@@ -11,7 +11,9 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "*"
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-authclient":"*",
+        "djeager/yii2-validators":"dev-master"
     },
     "autoload": {
         "psr-4": {
