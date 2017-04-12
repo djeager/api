@@ -1,5 +1,5 @@
 {
-    "name": "djeager/yii2-api",
+    "name": "djeager/yii2-api", 
     "description": "Api for some sources",
     "type": "yii2-extension",
     "keywords": ["yii2","extension","api"],
