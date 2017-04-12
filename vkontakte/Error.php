@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\post\extensions\api\vk;
+namespace djeager\api\vkontakte;
 use Yii;
 class Error extends Vk
 {
@@ -24,7 +24,7 @@ class Error extends Vk
     	return [
             [['error_code','captcha_sid'],'integer'],
             ['error_msg','string'],
-            ['request_params','vArray'],
+            //['request_params','vArray'],
             ['redirect_uri','url'],
         ];
     }

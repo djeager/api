@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\post\extensions\api\vk;
+namespace djeager\api\vkontakte;
 
 /**
  * Метод позволяет получить результаты быстрого поиска по произвольной подстроке

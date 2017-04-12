@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\post\extensions\api\vk;
+namespace djeager\api\vkontakte;
 
 
 class Profiles extends Vk{
@@ -35,11 +35,13 @@ class Profiles extends Vk{
     public function getAlias(){
     	return[
             'name'=>'first_name',
+            'domain'=>'uid',
         ];
     }
     public function getUrl(){
     	return "https://vk.com/".$this->screen_name;
     }
+    
 }
 
 ?>

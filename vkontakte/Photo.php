@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\post\extensions\api\vk;
+namespace djeager\api\vkontakte;
 
 
 class Photo extends Vk
@@ -51,19 +51,33 @@ class Photo extends Vk
 
         ]);
     }
+
+    public function getAlias()
+    {
+        return[
+            'preview'=>'thumbnail',
+          'description'=>null,
+        ];
+    }
     public function scenarioData(Vk $obj=null){
+        $this->parent->links=$this;
     	return $this->attributes;
     }
-    public function getThumbnail($v){
-    	$val=$this->src_xxxbig?:$this->src_xxbig?:$this->src_xbig?:$this->src_big?:$this->src;
-        return "<img src='$val'>";
+    public function getThumbnail(){
+    	//$val=$this->src_xxxbig?:$this->src_xxbig?:$this->src_xbig?:$this->src_big?:$this->src;
+        return "<img src='{$this->getUrl()}'>";
     }
     public function getPhoto_75($val){
-        $val=$this->photo_807 ?: $this->photo_604 ?: $this->photo_130 ?: $val;
-    	return "<img src='$val'>";
+        //$val=$this->photo_807 ?: $this->photo_604 ?: $this->photo_130 ?: $val;
+    	return "<img src='{$this->getUrl()}'>";
     }
     public function generateData($data){
     	return $this;
+    }
+
+    public function getUrl()
+    {
+        return $this->src_xxxbig?:$this->src_xxbig?:$this->src_xbig?:$this->src_big?:$this->src;
     }
 }
 

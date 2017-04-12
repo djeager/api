@@ -1,5 +1,5 @@
 <?php
-namespace backend\modules\post\extensions\api\vk;
+namespace djeager\api\vkontakte;
 use yii\helpers\Html;
 
 class Newsfeed extends Vk
@@ -89,6 +89,11 @@ class Newsfeed extends Vk
         if(is_string($d)) return $d;
         $this->next_from=@$d['response']['next_from']?:false;
         return $d;
+    }
+
+    public function scenarioData()
+    {
+        
     }
     public function getAlias(){
     	return ['query'=>'q','title'=>'','slug'=>'',];

@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\post\extensions\api\vk;
+namespace djeager\api\vkontakte;
 class Likes extends Vk
 {
     public function atrributes()
