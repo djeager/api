@@ -1,5 +1,5 @@
 {
-    "name": "djeager/yii2-api", 
+    "name": "djeager/yii2-api",
     "description": "Api for some sources",
     "type": "yii2-extension",
     "keywords": ["yii2","extension","api"],
@@ -13,7 +13,7 @@
     "require": {
         "yiisoft/yii2": "*",
         "yiisoft/yii2-authclient":"*",
-        "djeager/yii2-validators":"dev-master"
+        "djeager/yii2-validators":"^1.0"
     },
     "autoload": {
         "psr-4": {
