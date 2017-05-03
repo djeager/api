@@ -162,6 +162,7 @@ class Wall extends Vk
     {
         if($p=$this->getLinks('Photo')) return $p->url;
         elseif($p=$this->getLinks('Video')) return $p->image;
+        elseif($p=$this->getLinks('Link')) return $p->img;
         else return null;
     }
 

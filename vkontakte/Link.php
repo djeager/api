@@ -60,11 +60,12 @@ class Link extends Vk
     {
         return [
             'preview' => 'thumbnail',
+            'img' => 'image_src',
         ];
     }
 
     public function scenarioData()
-    {
+    {   $this->parent->links=$this;
         return $this->attributes;
     }
 
