@@ -14,7 +14,7 @@ class Wall extends Vk
     {
         return array_merge([
             /** data scenario https://vk.com/dev/objects/post */
-            'id','owner_id','from_id','date','text','reply_owner_id','reply_post_id','friends_only','comments','likes','reposts','post_type','attachments','geo','owner',
+            'id','owner_id','to_id','from_id','date','text','reply_owner_id','reply_post_id','friends_only','comments','likes','reposts','post_type','attachments','geo','owner',
             'copy_history',
 
 
@@ -31,7 +31,7 @@ class Wall extends Vk
         $p = parent::scenarios();
         $s=[
                  'data' => array_merge($this->attributes(),['template']),
-               'search' => array_merge(['domain', 'query', 'owners_only', 'count', 'offset', 'extended', 'fields'], $p['default']),
+               'search' => array_merge(['owner_id', 'domain', 'query', 'owners_only', 'count', 'offset', 'extended', 'fields'], $p['default']),
                   'get' => array_merge(['owner_id', 'domain', 'offset', 'count', 'extended', 'filter', 'fields'], $p['default']),
               'getById' => array_merge(['posts','extended'], $p['default']),
         ];
@@ -121,7 +121,8 @@ class Wall extends Vk
     {
         return[
             'title'=>null,
-            'type'=>'post_type'
+            'type'=>'post_type',
+            'item_id' => 'id',
         ];
     }
 
@@ -138,7 +139,7 @@ class Wall extends Vk
     }
     public function getUrl()
     {
-        return "https://vk.com/wall".($this->owner_id?:$this->from_id)."_{$this->id}";
+        return "https://vk.com/wall".($this->owner_id?:$this->to_id?:$this->from_id)."_{$this->id}";
     }
     public function getLikes(){
     	return isset($this->likes)?$this->likes['count']:'';
