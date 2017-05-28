@@ -11,12 +11,7 @@ class Auth extends \yii\authclient\clients\Facebook
      * @var string protocol version.
      */
     public $version = '2.8';
-    /**
-     * @var string OAuth client ID.
-     */
-    public $clientId = '253197791756909';
-    
-    public $clientSecret='27239e3ae515ac8066ac06d7f132e7d6';
+
     
     public function setAccessToken($token){        
         $f=fopen(__dir__.'/auth.json','w+'); 

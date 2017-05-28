@@ -21,8 +21,13 @@ class Search  extends Fb
     {
         return [
             [['q','type'],'string'],
-            //['type','in','range'=>array_keys($this->getTypes())],
+            ['type','in','range'=>array_keys($this->getTypes())],
             //[['q','type'],'required'],
+            ['fields','default','value'=>function(){
+                $obj="\\djeager\\api\\facebook\\".ucfirst($this->type);
+                $obj=new $obj(['scenario'=>'fields']);
+                return $obj->runScenario();
+            }],
             ['fields','safe'],
         ];
     }
@@ -40,7 +45,8 @@ class Search  extends Fb
             'event'=>'Мероприятия',
             'group'=>'Группы',
             'place'=>'Места',
-            'placetopic'=>'Список тем'
+            'placetopic'=>'Список тем',
+            'sharedposts' => '',
         ];
     }
 }

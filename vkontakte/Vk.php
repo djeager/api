@@ -379,15 +379,15 @@ class Vk extends \backend\modules\post\extensions\BaseParser //implements \Seria
         return key_exists($v->formName(), $this->_links) ? false : $this->_links[$v->formName()] = $v;
     }
 
-    public function getColor()
-    {
-        return new Color();
-    }
 
     public function getLinks($name = null)
     {
         if ($name) return key_exists($name, $this->_links) ? $this->_links[$name] : false;
         else return $this->_links;
+    }
+    public function getColor()
+    {
+        return new Color();
     }
 }
 

@@ -1,17 +1,27 @@
 <?php
 
 namespace djeager\api\facebook;
+
 use backend\modules\post\extensions\BaseParser;
 
 
 class Fields extends BaseParser
 {
-    
+
+    public function scenarios()
+    {
+        return [
+            'default' => ['data', 'paging',],
+            'data' => $this->attributes(),
+            'response' => $this->attributes(),
+        ];
+    }
+
     public function attributes()
     {
         return [
 
-        
+
             'id',
             'cover',        //Information about the group's cover photo.
             'description',  //A brief description of the group.
@@ -25,13 +35,7 @@ class Fields extends BaseParser
             'updated_time', //The last time the group was updated (this includes changes in the group's properties and changes in posts and comments if the session user can see them).
         ];
     }
-    public function scenarios()
-    {
-        return [
-            'default' => ['data','paging',],
-            'data' => $this->attributes(),
-        ];
-    }
+
     public function rules()
     {
         return [
@@ -43,17 +47,24 @@ class Fields extends BaseParser
             //['data','djeager\validators\CreateObject','isArray'=>true,'fullName'=>$this->className(),'construct'=>['scenario'=>'data']],
         ];
     }
+
     public function attributeLabels()
     {
         return [];
     }
-    public function getAlias(){
-    	return ['title'=>'name'];
-    } 
-    public function scenarioDefault(){
+
+    public function getAlias()
+    {
+        return ['title' => 'name'];
+    }
+
+    public function scenarioDefault()
+    {
         return $this->data;
     }
-    public function getItem_id(){
-    	return "{$this->owner}_{$this->id}";
+
+    public function getItem_id()
+    {
+        return "{$this->owner}_{$this->id}";
     }
 }
