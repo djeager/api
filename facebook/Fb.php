@@ -79,7 +79,7 @@ class Fb extends BaseParser
 
     public function getQueryUrl()
     {
-        $url = "https://graph.facebook.com/";
+        $url = "https://graph.facebook.com/v2.8/";
         $url .= mb_strtolower($this->formName());
         $url .= '/' . $this->edge;
         $url .= '?' . http_build_query(array_merge($this->getAttributes($this->activeAttributes()), ['access_token' => $this->access_token]));
