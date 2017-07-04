@@ -5,20 +5,6 @@ namespace djeager\api\facebook;
 
 class Post extends Fb
 {
-    public function scenarios()
-    {
-        return [
-            'fields' => $this->attributes(),
-        ];
-    }
-
-    public function attributes()
-    {
-        return [
-            'id', 'source', 'caption', 'link', 'picture', 'message', 'description', 'attachments',
-        ];
-    }
-
     public function rules()
     {
         return [
@@ -28,6 +14,20 @@ class Post extends Fb
         ];
     }
 
+    public function attributes()
+    {
+        return $this->scenarios($this->getScenario());
+    }
+
+    public function scenarios($scenario = null)
+    {
+        $list = [
+            'default' => ['id', 'fields'],
+            'data' => ['id', 'source','name', 'caption', 'link', 'picture', 'message', 'description', 'attachments',],
+        ];
+        return $scenario ? $list[$scenario] : $list;
+    }
+
     public function getAlias()
     {
         return [
@@ -35,13 +35,18 @@ class Post extends Fb
         ];
     }
 
+    public function getNode()
+    {
+        return $this->id;
+    }
+
     public function afterValidate()
     {
-        if ($this->source) {
+        if ($this->getScenario()=='data' && $this->source) {
             $v = new Video(['scenario' => 'fields']);
             $v->setAttributes(['source' => $this->source, 'description' => $this->description]);
             $v->validate();
-            
+
             $a = $this->attachments;
             $a[] = $v;
             $this->attachments = $a;

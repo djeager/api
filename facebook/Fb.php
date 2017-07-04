@@ -34,6 +34,7 @@ class Fb extends BaseParser
     {
         $aa = [];
         foreach ($this->attachments['data'] as $k => $v) {
+            if(!isset($v['media'] )) continue;
             foreach ($v['media'] as $obj => $data) {
                 if (is_object($obj)) {
                     $aa[$k] = $v;
@@ -74,16 +75,24 @@ class Fb extends BaseParser
 
     public function getEdge()
     {
-        return $this->getScenario() !== 'default' ?: '';
+        return $this->getScenario() !== 'default' ? $this->getScenario() : '';
     }
 
     public function getQueryUrl()
     {
-        $url = "https://graph.facebook.com/v2.8/";
-        $url .= mb_strtolower($this->formName());
-        $url .= '/' . $this->edge;
-        $url .= '?' . http_build_query(array_merge($this->getAttributes($this->activeAttributes()), ['access_token' => $this->access_token]));
+        $url = [
+            'https://graph.facebook.com',
+            'v2.8',
+            $this->node,
+            $this->edge,
+        ];
+        $url = implode('/', array_diff($url, [null])) . '?' . http_build_query(array_merge($this->getAttributes($this->activeAttributes()), ['access_token' => $this->access_token]));
         return $url;
+    }
+
+    public function getNode()
+    {
+        return mb_strtolower($this->formName());
     }
 
     public function getViewPath()

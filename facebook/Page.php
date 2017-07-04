@@ -39,7 +39,9 @@ class Page extends Fb
 
     public function getOrigin()
     {
-        return $this->posts->link ?: "http://facebook.com/" . $this->posts->id;;
+        //return $this->posts->link ?: "http://facebook.com/" . $this->posts->id;;
+        $id=explode('_',$this->posts->id);
+        return "https://www.facebook.com/permalink.php?story_fbid=" . $id[1].'&id='.$id[0];
     }
 
     public function getDescription()
