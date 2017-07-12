@@ -32,13 +32,30 @@ class Group extends Fb
     public function rules()
     {
         return [
-            ['fields', 'default', 'value' => implode(',', (new Post(['scenario' => 'fields']))->attributes())],
+            ['fields', 'default', 'value' => implode(',', (new Post(['scenario' => 'data']))->attributes())],
+            ['id','required'],
+            ['id', 'validId'],
         ];
     }
 
     public function attributeLabels()
     {
         return [];
+    }
+
+    public function validId($a, $p)
+    {
+        if ((new \yii\validators\UrlValidator)->validate($this->$a)) {
+            $params = parse_url($this->$a, PHP_URL_PATH);
+            $params = explode('/', $params . '/');
+            $params = array_values(array_diff($params, ['', null]));
+            $url = new \djeager\api\facebook\Url();
+            $ids = "https://www.facebook.com/" . $params[0];
+            $url->setAttributes(['ids' => $ids]);
+            $data = $url->getData();
+
+            return $this->$a = $data[$ids]['id'];
+        }
     }
 
 //    public function getData(){
