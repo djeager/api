@@ -5,8 +5,8 @@ namespace djeager\api\vkontakte;
 use Yii;
 use yii\base\ErrorException;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/vendor/djeager/yii2-api/vkontakte/vkPhpSdk" . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'VkPhpSdk.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . "/vendor/djeager/yii2-api/vkontakte/vkPhpSdk" . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Oauth2Proxy.php';
+require_once __DIR__ . "/vkPhpSdk" . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'VkPhpSdk.php';
+require_once __DIR__ . "/vkPhpSdk" . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Oauth2Proxy.php';
 
 class Vk extends \backend\modules\post\extensions\BaseParser //implements \Serializable
 {
