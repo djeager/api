@@ -54,4 +54,9 @@ class Page extends Fb
 
         return @$this->posts->links['Image']->src;
     }
+
+    public function getTitle()
+    {
+        return $this->name?:$this->id;
+    }
 }
