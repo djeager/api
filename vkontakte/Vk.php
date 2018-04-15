@@ -4,6 +4,7 @@ namespace djeager\api\vkontakte;
 
 use Yii;
 use yii\base\ErrorException;
+use yii\helpers\Url;
 
 require_once __DIR__ . "/vkPhpSdk" . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'VkPhpSdk.php';
 require_once __DIR__ . "/vkPhpSdk" . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Oauth2Proxy.php';
@@ -29,6 +30,7 @@ class Vk extends \backend\modules\post\extensions\BaseParser //implements \Seria
 
     public function __construct(array $config = null, $formName = null)
     {
+        $this->_redirectUri=Url::toRoute('/post/vk/newtoken',true);
         $conf = \Yii::$app->getComponents('authClientCollection')['authClientCollection']['clients']['vkontakte'];
         $this->_clientId = $conf['clientId'];
         $this->_clientSecret = $conf['clientSecret'];
