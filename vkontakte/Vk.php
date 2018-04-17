@@ -312,7 +312,7 @@ class Vk extends \backend\modules\post\extensions\BaseParser //implements \Seria
 //           // $c->viewPath='/';
 //            return $c->render('@vendor/djeager/parser/module/views/vk/_formCaptcha',['model'=>$this]);
 //        }
-//        return $obj->data ; 
+//        return $obj->data ;
     }
 
     public function getHtml()

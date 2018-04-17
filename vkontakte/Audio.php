@@ -9,13 +9,13 @@ class Audio extends Vk
 
     public function attributes()
     {
-        return [
+        return array_merge(parent::attributes(), [
             /** data scenario */
             /*v4.104*/
             'aid', 'owner_id', 'artist', 'title', 'duration', 'url', 'lyrics_id', 'album', 'genre',
             /** getById scenario */
             'audios',
-        ];
+        ]);
     }
 
     public function scenarios()
@@ -25,14 +25,14 @@ class Audio extends Vk
             /*v4.104*/
             'data' => ['aid', 'owner_id', 'artist', 'title', 'duration', 'url', 'lyrics_id', 'album', 'genre',],
 
-            'getById' => ['audios'],
+            'getById' => ['audios', 'v'],
         ];
         return array_merge($p, $s);
     }
 
     public function rules()
     {
-        return [
+        return array_merge(parent::rules(), [
             /** data scenario */
             /*v4.104*/
             [['aid', 'owner_id', 'lyrics_id', 'album', 'genre'], 'integer'],
@@ -42,7 +42,7 @@ class Audio extends Vk
 
             /** getById scenario */
             ['audios', 'string'],
-        ];
+        ]);
     }
 
     public function getAlias()
